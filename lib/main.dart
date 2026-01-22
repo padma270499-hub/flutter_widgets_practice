@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets_practice/widgets/buttonwidget.dart';
+import 'package:flutter_widgets_practice/widgets/listviewwidget.dart';
+import 'package:flutter_widgets_practice/widgets/navigationwidget.dart';
+import 'package:flutter_widgets_practice/widgets/textwidget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const AppRoot());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class AppRoot extends StatelessWidget {
+  const AppRoot({super.key});
 
   final List<String> topics = const [
     'Text Widget',
@@ -28,56 +20,68 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Widgets Practice'),
-        centerTitle: true,
-      ),
-      body: ListView.builder(
-        itemCount: topics.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(topics[index]),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => DetailScreen(title: topics[index]),
-                ),
-              );
-            },
-          );
-        },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Widgets Practice'),
+          centerTitle: true,
+        ),
+        body: ListView.builder(
+          itemCount: topics.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text(topics[index]),
+              trailing: const Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push<Widget>(
+                  context,
+                  MaterialPageRoute<Widget>(
+                    builder: (_) => TopicDetailScreen(title: topics[index]),
+                  ),
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class DetailScreen extends StatelessWidget {
+class TopicDetailScreen extends StatelessWidget {
   final String title;
 
-  const DetailScreen({super.key, required this.title});
+  const TopicDetailScreen({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
+    Widget content;
+    switch (title) {
+      case 'Text Widget':
+        content = const TextWidgetDemo();
+        break;
+      case 'Button Widget':
+        content = const ButtonWidgetDemo();
+        break;
+      case 'ListView Widget':
+        content = const ListViewWidgetDemo();
+        break;
+      case 'Navigation Widget':
+        content = const NavigationWidgetDemo();
+        break;
+
+      default:
+        content = Center(
+          child: Text(
+            'content for "$title" coming soon!',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+        );
+    }
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(title, style: Theme.of(context).textTheme.headlineMedium),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Go Back'),
-            ),
-          ],
-        ),
-      ),
+      body: content,
     );
   }
 }
