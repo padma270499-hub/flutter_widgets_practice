@@ -61,7 +61,7 @@ class TopicDetailScreen extends StatelessWidget {
       case 'Text Widget':
         content = const TextWidgetDemo();
         break;
-      case 'Button Widget':
+      case 'Button Widgets':
         content = const ButtonWidgetDemo();
         break;
       case 'ListView Widget':
