@@ -15,7 +15,7 @@ class AppRoot extends StatelessWidget {
     'Text Widget',
     'Button Widgets',
     'ListView Widget',
-    'Navigation',
+    'Navigation Widget',
   ];
 
   @override

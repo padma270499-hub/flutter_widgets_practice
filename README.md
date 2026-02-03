@@ -1,16 +1,20 @@
-# flutter_widgets_practice
+# Flutter Widgets Practice
 
-A new Flutter project.
+A Flutter learning project focused on implementing core widgets and navigation concepts.
 
-## Getting Started
+## Features
+- Text widget examples
+- Button widgets (Elevated, Text, Outlined, Icon, FAB)
+- ListView using ListView.builder
+- Navigation between screens
+- Navigation stack handling (push, pop, replace, clear stack)
 
-This project is a starting point for a Flutter application.
+## Tech Stack
+- Flutter
+- Dart
 
-A few resources to get you started if this is your first Flutter project:
+## Purpose
+This project is created as part of my Flutter learning journey.
+It focuses on building strong fundamentals by practicing widgets in isolation and maintaining clean project structure.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
